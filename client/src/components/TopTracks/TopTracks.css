@@ -1,0 +1,16 @@
+.top_tracks_section{
+    padding: 80px;
+    width: 100%;
+}
+
+.top_tracks_section *{
+    margin: 0;
+}
+
+.top_header{
+    margin-bottom: 30px;
+}
+
+.top_tracks_section .track_details{
+    margin-left: 20px;
+}

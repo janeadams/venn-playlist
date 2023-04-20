@@ -1,0 +1,48 @@
+.recommendations_section {
+  padding: 80px;
+  width: 100%;
+}
+
+.recommendations_section * {
+  margin: 0;
+}
+
+.recommend_header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+.recommend_header a {
+  margin: 0;
+}
+
+.recommend_header span {
+  color: var(--green);
+}
+
+.recommended_tracks {
+  margin-top: 60px;
+}
+
+.subtitle_wrapper p{
+    text-align: left;
+    font-size: 14px;
+
+}
+
+
+.white_button{
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 50px;
+    padding: 11px 24px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.3, 0, 0.4, 1) 0s;
+}

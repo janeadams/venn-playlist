@@ -1,0 +1,121 @@
+nav {
+  height: 100vh;
+  background-color: black;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100px;
+  color: #9b9b9b;
+  box-shadow: rgb(0 0 0 / 30%) 0px 0px 10px;
+  z-index: 99;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 30px;
+}
+
+.github {
+  margin-bottom: 30px;
+    cursor: pointer;
+    width: fit-content;
+
+}
+
+.github:hover svg{
+  fill:var(--green);
+}
+
+.logo img {
+  height: 50px;
+  width: 50px;
+}
+
+.nav_items {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.nav_items li a {
+  text-decoration: none;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.nav_items li {
+  border-left: 5px solid transparent;
+  transition: all 0.25s cubic-bezier(0.3, 0, 0.4, 1) 0s;
+}
+.nav_items li:hover,
+.nav_items li.active{
+  border-left: 5px solid var(--green);
+  background-color: #181818;
+}
+
+
+.nav_items li a:hover {
+  color: white;
+}
+
+.nav_items li a:hover > svg {
+  fill: white;
+}
+
+.nav_items li a svg {
+  margin-bottom: 7px;
+}
+
+/* ===== MEDIA QUERIES ====== */
+
+@media (max-width: 700px) {
+  nav {
+    flex-direction: row;
+    width: 100vw;
+    height: unset;
+    bottom: 0;
+    top: unset;
+  }
+
+  .nav_items {
+    display: grid;
+    flex-direction: row;
+    width: 100%;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 0;
+  }
+
+  .nav_items li {
+    height: 100%;
+  }
+
+  .nav_items li a {
+    padding: 20px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .github {
+    display: none;
+  }
+
+  .nav_items li {
+    border-left: none;
+    border-top: 5px solid transparent;
+  }
+  .nav_items li:hover,
+  .nav_items li.active {
+    border-left: none;
+    border-top: 5px solid var(--green);
+  }
+}

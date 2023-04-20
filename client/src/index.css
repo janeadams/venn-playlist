@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+font-family: "Circular Std", system, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(24, 24, 24);
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    max-width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

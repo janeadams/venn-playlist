@@ -1,0 +1,36 @@
+.login_section {
+  width: 100%;
+  margin: 0px auto;
+  /* padding: 80px; */
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.login_section a {
+  background-color: var(--green);
+  display: inline-block;
+  color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding: 17px 35px;
+  margin: 20px 0px 70px;
+  min-width: 160px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.login_section a:hover {
+  background-color: rgb(67, 216, 119);
+}
+
+.login_section h1 {
+  color: white;
+  font-size: 32px;
+  margin: 0;
+}
