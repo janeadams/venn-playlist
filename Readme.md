@@ -1,57 +1,63 @@
-# Spotify Profile App
+# Spotify Playlist Overlap
 
-A web app for visualizing personalized Spotify data
+0. Authenticate using your Spotify Developer Credentials
 
+`auth_manager = f.auth_call()`
 
-## Local Installation & Set Up
+This will give you a link to open in a browser. Sign in to your Spotify account. It will then route you to a seemingly broken page (localhost). Note that all your credentials and whatnot should be in a .env file like so (note no variables should have quotes around them):
 
-1. Register a Spotify App in your [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/) and add `http://localhost:8888/callback` as a Redirect URI in the app settings
+```
+CLIENT_ID=<YOUR CLIENT ID>
+CLIENT_SECRET=<YOUR CLIENT SECRET>
+REDIRECT_URI=http://localhost:8080
+```
 
-2. Create a `.env` file at the root of the project based on `.env.example` and add your unique `CLIENT_ID` and `CLIENT_SECRET` from the Spotify dashboard
+Copy that localhost address from your browser (contains params with special codes) and paste into the box brought up by this command:
 
-3. Ensure [nvm](https://github.com/nvm-sh/nvm) and [npm](https://www.npmjs.com/) are installed globally
+`sp = f.auth_response(auth_manager)`
 
-4. Install the correct version of Node
+1. Download & cache data. Genres and audio features are pending (Spotify doesn't like this many API calls, even with backoffs) so we keep these `False` for now.
 
-    ```shell
-    nvm install
-    ```
+`df = f.download_data(sp, fetch_genres=False, fetch_audio_features=False)``
 
-5. Install dependencies
+2. Show tracks added over time:
 
-    ```shell
-    npm install
-    ```
+`f.make_timeline(df)`
 
-6. Run the React app on <http://localhost:3000> and the Node server on <http://localhost:8888>
+![tracks added over time](./figs/timeline.png)
 
-    ```shell
-    npm start
-    ```
+3. Show tracks added over time by folder:
 
-## Deploying to Heroku with Git
+`f.make_folder_stacked_timeline(df)`
 
-1. Create a [Heroku](https://www.heroku.com/) app
+![tracks added over time by folder](./figs/stacked_timeline.png)
 
-2. Add your Heroku app as a git remote
+4. Show track counts per folder, divided by playlist
 
-    ```shell
-    heroku git:remote -a your-app-name
-    ```
+`f.make_folder_bars(df)`
 
-3. Add `http://your-app-name.herokuapp.com/callback` as a Redirect URI in your Spotify app's settings
+![track counts per folder, divided by playlist](./figs/folder_bars.png)
 
-4. In your app's **Settings** tab in the Heroku dashboard, add [config vars](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard).
+5. Show co-occurrence heatmap
 
-   Based on the values in your `.env` file, the `CLIENT_ID`, `CLIENT_SECRET`, `REDIRECT_URI`, and `FRONTEND_URI` key value pairs. Make sure to replace the `localhost` URLs with your heroku app's URL.
+`f.plot_shared_count_heatmap(df=df)`
 
-   ```env
-   REDIRECT_URI: http://your-app-name.herokuapp.com/callback
-   FRONTEND_URI: http://your-app-name.herokuapp.com
-   ```
+![tracks added over time](./figs/heatmap.png)
 
-5. Push to Heroku
+6. Plot sankey:
 
-    ```shell
-    git push heroku main
-    ```
+`f.plot_thresholded_parcats(df=df, show_folders=True).show()`
+
+![sankey diagram of edges between playlists](./figs/sankey.png)
+
+7. Parallel Categories:
+
+`f.plot_parallel_categories(df=df).show()`
+
+![number of tracks between pairs of playlists](./figs/parcats.png)
+
+2. Track Repeat Analysis:
+
+`f.track_repeat_analysis(df=df).show()`
+
+![show how many tracks occur in more than 1 playlist](./figs/repeat_bar.png)
