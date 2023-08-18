@@ -489,8 +489,9 @@ def make_timeline(df):
             trace.update_traces(line=dict(color=f'rgba(255,255,255,{(1/(len(span)))*(i)})', width=i/2))
         data.append(trace.data[0])
         
-    fig = go.Figure(data=data, layout={'width': 1200, 'title': 'Tracks added over time'})
+    fig = go.Figure(data=data, layout={'width': 1200, 'height': 600, 'title': 'Tracks added over time'})
     fig.update_layout(yaxis_type="log")  # Adjust Y-axis to log scale
+    fig.update_layout(autosize=False)
     fig.write_html('figs/timeline.html')
     fig.write_image('figs/timeline.png', scale=3)
     return fig
@@ -531,7 +532,8 @@ def make_folder_stacked_timeline(df, scale='month'):
             ), row=1, col=1)
     fig.update_yaxes(title='Total Songs<br>Added', row=1)
     fig.update_yaxes(title='% Added to<br>Each Folder', row=2)
-    fig.update_layout(width=800, title='Songs Added Over Time', showlegend=False, margin={'l':100, 'r': 40, 't':50, 'b': 30})
+    fig.update_layout(width=800, height=600, title='Songs Added Over Time', showlegend=False, margin={'l':100, 'r': 40, 't':50, 'b': 30})
+    fig.update_layout(autosize=False)
     fig.write_html('figs/stacked_timeline.html')
     fig.write_image('figs/stacked_timeline.png', scale=3)
     return fig
@@ -551,7 +553,8 @@ def make_folder_bars(df):
                  title='Number of tracks per playlist', 
                  labels={'folder': 'Folder', 'date_added': 'Number of tracks', 'playlist': 'Playlist'})
     
-    fig.update_layout(showlegend=False, width=1000)
+    fig.update_layout(showlegend=False, width=1000, height=400)
+    fig.update_layout(autosize=False)
     fig.write_html('figs/folder_bars.html')
     fig.write_image('figs/folder_bars.png', scale=3)
     return fig
@@ -681,6 +684,7 @@ def plot_shared_count_heatmap(matrix_df=None, shared_df=None, df=None):
                     title="Shared Count between Playlists",
                     color_continuous_scale='Magma'
                     )
+    fig.update_layout(autosize=False)
     fig.update_layout(width=1000, height=1000, showlegend=False)
     fig.write_html('figs/heatmap.html')
     fig.write_image('figs/heatmap.png', scale=3)
@@ -725,8 +729,9 @@ def plot_thresholded_parcats(shared_df=None, df=None, threshold=0, show_folders=
         line={'color': thresheld['gradient_color'], 'shape': 'hspline'}
     ))
     fig.update_layout(width=1200, height=800)
+    fig.update_layout(autosize=False)
     fig.write_html('figs/parcats.html')
-    fig.write_image('figs/parcats.png', scale=3)
+    fig.write_image('figs/parcats.png', scale=3, width=1200, height=800)
     return fig
 
 def plot_parallel_categories(shared_df=None, df=None, threshold=20):
@@ -748,6 +753,7 @@ def plot_parallel_categories(shared_df=None, df=None, threshold=20):
     exploded_df = thresheld.explode('shared_tracks')
     fig = px.parallel_categories(exploded_df, dimensions=['playlist_name_a', 'playlist_name_b'], color='shared_count', color_continuous_scale='Viridis')
     fig.update_layout(height=600, width=700, margin={'l': 50, 'r': 100, 't': 50, 'b': 50}, showlegend=False, coloraxis_showscale=False)
+    fig.update_layout(autosize=False)
     fig.write_html('figs/sankey.html')
     fig.write_image('figs/sankey.png', scale=3)
     return fig
@@ -771,6 +777,7 @@ def track_repeat_analysis(df):
     
     count_summary = track_repeats.groupby('count').count().reset_index().sort_values(by='count', ascending=False)
     fig = px.bar(count_summary, x='count', y='track_name', log_y=True)
+    fig.update_layout(autosize=False, width=1000, height=500, title='Number of tracks repeated across playlists')
     fig.write_html('figs/repeat_bar.html')
     fig.write_image('figs/repeat_bar.png', scale=3)
     return fig
