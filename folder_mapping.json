@@ -1,0 +1,12 @@
+{
+    "red": ["dancing", "goofy", "balkan", "grit", "speed", "throwback", "ladyrager"],
+    "orange": ["autumn", "jameson", "coffee", "moon", "french"],
+    "yellow": ["sparkle", "crayons", "bops", "happy"],
+    "green": ["celtic", "witches", "bluegrass", "dirtygrass"],
+    "blue": ["shower", "bare", "healing", "vermont", "haunted"],
+    "purple": ["mossy", "soft", "space", "focus"],
+    "pink": ["girl", "saccharine", "love", "hipster", "vapor", "pop"],
+    "brown": ["evergreens", "work", "strings", "vintage", "oldschool", "folk", "hiraeth"],
+    "black": ["rhymes", "america", "memes", "fucks", "punk"],
+    "white": ["repeat", "sharing", "tops"]
+}
