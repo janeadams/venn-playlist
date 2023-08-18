@@ -1,5 +1,7 @@
 # Spotify Playlist Overlap
 
+A tool for visualizing the hypergraphs in your Spotify playlists. A lot of these rely on (a) you having a folder system in place to organize your playlists and (b) you being obsessed enough to manually enter that folder config into a `folder_mapping.json` file.
+
 ## Setup
 
 The basic file structure should be as follows:
@@ -26,6 +28,7 @@ CLIENT_ID=<YOUR CLIENT ID>
 CLIENT_SECRET=<YOUR CLIENT SECRET>
 REDIRECT_URI=http://localhost:8080
 ```
+N.B.: Make sure the redirect URI matches whatever's in your developer dashboard settings at `https://developer.spotify.com/dashboard/<YOUR CLIENT ID>/settings` under "Redirect URIs"
 
 Copy that localhost address from your browser (contains params with special codes) and paste into the box brought up by this command:
 
@@ -35,7 +38,7 @@ Copy that localhost address from your browser (contains params with special code
 
 Download & cache data. Genres and audio features are pending (Spotify doesn't like this many API calls, even with backoffs) so we keep these `False` for now.
 
-`df = f.download_data(sp, fetch_genres=False, fetch_audio_features=False)``
+`df = f.download_data(sp, fetch_genres=False, fetch_audio_features=False)`
 
 # Visualize
 
