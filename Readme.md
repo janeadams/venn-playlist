@@ -7,6 +7,8 @@ A tool for visualizing the hypergraphs in your Spotify playlists. A lot of these
 The basic file structure should be as follows:
 
 ```
+├── .env
+├── .gitignore # You might wanna pop data/ in here
 ├── Readme.md
 ├── color_mapping.json # Edit these to the colors you want for your folders
 ├── folder_mapping.json # Spotify API doesn't allow pulling folders so I made a manual fuzzy match instead
