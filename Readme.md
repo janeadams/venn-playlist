@@ -1,6 +1,21 @@
 # Spotify Playlist Overlap
 
-0. Authenticate using your Spotify Developer Credentials
+## Setup
+
+The basic file structure should be as follows:
+
+```
+├── Readme.md
+├── color_mapping.json # Edit these to the colors you want for your folders
+├── folder_mapping.json # Spotify API doesn't allow pulling folders so I made a manual fuzzy match instead
+├── module
+│   ├── __init__.py
+│   └── functions.py # TODO: break this up into data processing, visualization
+├── requirements.txt
+└── venn.ipynb
+```
+
+Authenticate using your Spotify Developer Credentials
 
 `auth_manager = f.auth_call()`
 
@@ -16,47 +31,51 @@ Copy that localhost address from your browser (contains params with special code
 
 `sp = f.auth_response(auth_manager)`
 
-1. Download & cache data. Genres and audio features are pending (Spotify doesn't like this many API calls, even with backoffs) so we keep these `False` for now.
+## Download
+
+Download & cache data. Genres and audio features are pending (Spotify doesn't like this many API calls, even with backoffs) so we keep these `False` for now.
 
 `df = f.download_data(sp, fetch_genres=False, fetch_audio_features=False)``
 
-2. Show tracks added over time:
+# Visualize
+
+Show tracks added over time:
 
 `f.make_timeline(df)`
 
 ![tracks added over time](./figs/timeline.png)
 
-3. Show tracks added over time by folder:
+Show tracks added over time by folder:
 
 `f.make_folder_stacked_timeline(df)`
 
 ![tracks added over time by folder](./figs/stacked_timeline.png)
 
-4. Show track counts per folder, divided by playlist
+Show track counts per folder, divided by playlist
 
 `f.make_folder_bars(df)`
 
 ![track counts per folder, divided by playlist](./figs/folder_bars.png)
 
-5. Show co-occurrence heatmap
+Show co-occurrence heatmap
 
 `f.plot_shared_count_heatmap(df=df)`
 
 ![tracks added over time](./figs/heatmap.png)
 
-6. Plot sankey:
+Plot sankey:
 
 `f.plot_thresholded_parcats(df=df, show_folders=True).show()`
 
 ![sankey diagram of edges between playlists](./figs/sankey.png)
 
-7. Parallel Categories:
+Parallel Categories:
 
 `f.plot_parallel_categories(df=df).show()`
 
 ![number of tracks between pairs of playlists](./figs/parcats.png)
 
-2. Track Repeat Analysis:
+Track Repeat Analysis:
 
 `f.track_repeat_analysis(df=df).show()`
 
